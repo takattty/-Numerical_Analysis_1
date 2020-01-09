@@ -35,7 +35,7 @@ int main(void)
     for(i=1; i<N; i++){
       z[i] = x[i];
       for(k=0; k<i; k++) {
-	z[i] -= a[i][k] * z[k];
+	      z[i] -= a[i][k] * z[k];
       }
     }
 
@@ -43,7 +43,7 @@ int main(void)
     for(j=N-2; j>=0; j--){
       y[j] = z[j];
       for(k=N-1; k>j; k--) {
-	y[j] -= a[j][k] * y[k];
+	      y[j] -= a[j][k] * y[k];
       }
       y[j] /= a[j][j];
     }
@@ -80,10 +80,10 @@ int luDecomp(void) {
     for(j=l+1; j<N; j++) {
       m = a[j][l] / a[l][l];
       for(k=l+1; k<N; k++){
-	a[j][k] -= m*a[l][k];
+	      a[j][k] -= m*a[l][k];
       }
       for(k=l; k<l+1; k++) {
-	a[j][k] = a[j][k] / a[k][k];
+	      a[j][k] = a[j][k] / a[k][k];
       }
     }
   }

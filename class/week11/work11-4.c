@@ -35,9 +35,9 @@ int main(void) {
     for(i=0; i<N; i++){
       s = 0.0;
       for(j=0; j<N; j++){
-	if(i!=j){
-	  s += a[i][j] * x[j];
-	}
+	      if(i!=j){
+	        s += a[i][j] * x[j];
+	      }
       }
       y[i] = ( a[i][N] - s ) / a[i][i];
       q += fabs( y[i] - x[i] );
@@ -50,7 +50,7 @@ int main(void) {
       printf("\n");
       printf("solution\n");
       for(i=0; i<N; i++){
-	printf("x%d = %9.7f\n", i, x[i]);
+	      printf("x%d = %9.7f\n", i, x[i]);
       }
       return 0;
     }

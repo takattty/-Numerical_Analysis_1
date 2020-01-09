@@ -20,7 +20,7 @@ int main(void)
     for(j=l+1; j<N; j++) {
       m = a[j][l] / a[l][l];
       for(k=l; k<N+1; k++){
-	a[j][k] -= m*a[l][k];
+	      a[j][k] -= m*a[l][k];
       }
     }
   }

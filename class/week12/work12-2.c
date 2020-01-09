@@ -19,9 +19,9 @@ int main(void) {
     for(j=0; j<N; j++) {
       m = a[j][l] / a[l][l];
       for(k=1; k<N+1; k++){
-	if(j != l) {
-	  a[j][k] -= m*a[l][k];
-	}
+	      if(j != l) {
+	        a[j][k] -= m*a[l][k];
+	      }
       }
     }
   }
