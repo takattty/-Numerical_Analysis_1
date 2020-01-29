@@ -20,53 +20,53 @@ int main(void) {
   int i, j, p, q, k, l;
   int count = 0 ;
 
-  for(l=0; l<N; l++){
-    for(k=0; k<N; k++){
+  for( l=0; l<N; l++ ) {
+    for( k=0; k<N; k++ ) {
       u[l][k] = 0.0;
     }
   }
 
-  for(i=0;i<N;i++) {
+  for( i=0; i<N; i++ ) {
     u[i][i] = 1.0 ;
   }
 
 
-  while(error > EPSILON){
+  while( error > EPSILON ){
     coef_max = 0.0;
-    for(i=0;i<N-1;i++){
-      for(j=i+1;j<N;j++){
-	if(fabs(a[i][j]) > coef_max) {
-	  p = i;
-	  q = j;
-	  coef_max = fabs(a[i][j]);
-	}
+    for( i=0; i<N-1; i++ ) {
+      for( j=i+1; j<N; j++ ) {
+	      if(fabs(a[i][j]) > coef_max) {//反復計算のaの部分。
+	        p = i;
+	        q = j;
+	        coef_max = fabs(a[i][j]);
+	      }
       }
     }
 
-    if(a[p][p] != a[q][q]) {
-      theta = 0.5 * atan(2.*a[p][q]/(a[q][q] - a[p][p]));
+    if( a[p][p] != a[q][q] ) {//反復計算のbの部分。
+      theta = 0.5 * atan( 2.*a[p][q] / (a[q][q] - a[p][p]) );
     }
     else {
       theta = 0.25 * M_PI * a[p][q] / fabs(a[p][q]);
-    }
+    }//ここまで反復計算。
 
     cc = cos(theta);
     ss = sin(theta);
 
     for(i=0;i<p;i++){
       for(j=0;j<q;j++){
-	b[i][j] = a[i][j];
+	      b[i][j] = a[i][j];
       }
       for(j=q+1;j<N;j++){
-	b[i][j] = a[i][j];
+        b[i][j] = a[i][j];
       }
     }
     for(i=p+1;i<N;i++){
       for(j=0;j<q;j++){
-	b[i][j] = a[i][j];
+	      b[i][j] = a[i][j];
       }
       for(j=q+1;j<N;j++){
-	b[i][j] = a[i][j];
+	      b[i][j] = a[i][j];
       }
     }
 
@@ -99,24 +99,24 @@ int main(void) {
     error = 0.;
     for(i=0;i<N;i++){
       for(j=0;j<N;j++){
-	error += fabs(a[i][j] - b[i][j]);
+	      error += fabs(a[i][j] - b[i][j]);//収束判定の条件を計算。
       }
     }
 
     for(i=0;i<N;i++){
       for(j=0;j<N;j++){
-	a[i][j] = b[i][j];
+	      a[i][j] = b[i][j];
       }
     }
 
     for(i=0;i<N;i++){
       double w = u[i][p] * cc - u[i][q] * ss;
       u[i][q] = u[i][p] * ss + u[i][q] * cc;
-      u[i][p] = w;
+      u[i][p] = w;//新しいUの要素
     }
     printf("Step No.%2d error = %.16e\n", count, error);
     count++;
-  }
+  }//ここで収束完了。
 
   printf("\n");
   printf("Eigenvalue\n");
@@ -126,7 +126,7 @@ int main(void) {
   printf("\n\n");
 
   printf(" Eigenvector\n" );
-  for(i=0; i<N;i++){
+  for(i=0;i<N;i++){
     for(j=0; j<N; j++){
       printf( "%9.6f ", u[i][j]) ;
     }
