@@ -70,7 +70,6 @@ int main(void) {
       }
     }
 
-
     for(j=0;j<q;j++){
       b[p][j] = a[p][j] * cc - a[q][j] * ss ;
       b[q][j] = a[p][j] * ss + a[q][j] * cc ;
