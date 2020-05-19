@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <math.h>
+
+#define EPSILON 1.e-15
+
+double func(double);
+double dfunc(double);
+
+int main(void)
+{
+  double a = 1. ;
+  printf("Initial value a = %f\n", a);
+  int i = 1;
+  double b;
+  while(1) {
+    b = a - func(a) / dfunc(a);
+    printf("Step No.%2d, b=%.16f, |a-b|=%.16e\n", i, b, fabs(a-b));
+    i += 1;
+    if(fabs(a-b) < EPSILON ) {
+      break;
+    }
+    else {
+      a = b;
+    }
+  }
+  return 0;
+}
+
+double func(double x)
+{
+  return pow(x, 3.) + x - 1. ;
+}
+
+double dfunc(double x)
+{
+  return 3.*pow(x, 2.) + 1;
+}
